@@ -218,35 +218,34 @@ document.addEventListener("DOMContentLoaded", () => {
 
             raf = requestAnimationFrame(animate);
         }
-const originalBrownHeight = brown().style.height || "5%";
-let brownExpanded = false;
 
-btn.addEventListener("click", () => {
+        const originalBrownHeight = brown().style.height || "5%";
+        let brownExpanded = false;
 
-    if (!brownExpanded) {
-        brown().style.transition = "height 0.25s ease";
-        brown().style.height = "20%";   
-        brownExpanded = true;
+        btn.addEventListener("click", () => {
+            if (!brownExpanded) {
+                brown().style.transition = "height 0.25s ease";
+                brown().style.height = "20%";
+                brownExpanded = true;
 
-        setTimeout(() => {
-            resize();
-            canvas.style.display = "block";
-            y = canvas.height;
-            vy = -12;
-            animate();
-        }, 260);
+                setTimeout(() => {
+                    resize();
+                    canvas.style.display = "block";
+                    y = canvas.height;
+                    vy = -12;
+                    animate();
+                }, 260);
 
-    } else {
-        if (raf) cancelAnimationFrame(raf);
-        raf = null;
+            } else {
+                if (raf) cancelAnimationFrame(raf);
+                raf = null;
 
-        canvas.style.display = "none";
-        brown().style.transition = "height 0.25s ease";
-        brown().style.height = originalBrownHeight;
-        brownExpanded = false;
-    }
-});
-
+                canvas.style.display = "none";
+                brown().style.transition = "height 0.25s ease";
+                brown().style.height = originalBrownHeight;
+                brownExpanded = false;
+            }
+        });
 
         window.addEventListener("resize", resize);
     }
@@ -258,10 +257,5 @@ btn.addEventListener("click", () => {
         if (raf) cancelAnimationFrame(raf);
     }
 
-    function check() {
-        mq.matches ? init() : destroy();
-    }
-
-    mq.addEventListener("change", check);
-    check();
+    init();
 });
